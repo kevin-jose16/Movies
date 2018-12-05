@@ -1,5 +1,5 @@
 //
-//  MoviesTableViewController.swift
+//  ClientsTableViewController.swift
 //  Movies
 //
 //  Created by Dario on 30/11/18.
@@ -8,38 +8,66 @@
 
 import UIKit
 
-class MoviesTableViewController: UITableViewController {
-
+class ClientsTableViewController: UITableViewController, UINavigationControllerDelegate {
+    
+    var clientslist : [Clients] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        setNavigationBar()
+        tableView.dataSource = self
+        tableView.delegate = self
+        clientslist = []
+        
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "done", style: .plain, target: self, action: #selector(getter: ClientsTableViewController.nibBundle))
     }
+    
+    func setNavigationBar() {
+        let screenSize: CGRect = UIScreen.main.bounds
+        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 44))
+        let navItem = UINavigationItem(title: "Clients")
+        let rightItem = UIBarButtonItem(title: "Add", style: UIBarButtonItem.Style.plain, target: self, action: #selector(rightbtn))
+        let leftItem = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.plain, target: self, action: #selector(leftbtn))
+
+        navItem.leftBarButtonItem = leftItem
+        navItem.rightBarButtonItem = rightItem
+        navBar.setItems([navItem], animated: false)
+        self.view.addSubview(navBar)
+    }
+
+    @objc func rightbtn() { // remove @objc for Swift 3
+       
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let clientsViewController = storyBoard.instantiateViewController(withIdentifier: "Client") as! ClientViewController
+        self.present(clientsViewController, animated:true, completion:nil)
+    }
+    
+    @objc func leftbtn() { // remove @objc for Swift 3
+        self.dismiss(animated:true, completion: nil)
+
+    }
+  
+}
+
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return 0
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+       // cell.textLabel?.text = cell[indexPath.row]
         return cell
+        
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -86,4 +114,4 @@ class MoviesTableViewController: UITableViewController {
     }
     */
 
-}
+
