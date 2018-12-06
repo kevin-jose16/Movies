@@ -7,16 +7,19 @@
 //
 
 import UIKit
+import os.log
 
-class ClientViewController: UIViewController, UINavigationControllerDelegate { //UIPickerViewDelegate, UIPickerViewDataSource,
+class ClientViewController: UIViewController, UITextViewDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var picker: UIPickerView!
     @IBOutlet weak var favouriteMoviesTextField: UITextField!
-    
     @IBOutlet weak var tableView: UITableView!
-    var pickerData: [String] = [String]()
+    @IBOutlet weak var addButton: UIButton!
+    
+    var movies = [Movie]()
+    var client : Clients?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,9 +60,17 @@ class ClientViewController: UIViewController, UINavigationControllerDelegate { /
     
     
     
-    @IBAction func addClientButton(_ sender: Any) { 
-        
+    @IBAction func addClientButton(_ sender: Any) {
+//        let name = ""
+//        let email = ""
+//        let favouritesMovie
+//        if name == nameTextField.text! && emailTextField.text{
+//
+//        }
+//        if name == nameTextField.text! && userpassword == passwordTextField.text!{
+//            self.lblMessage.text = "You can login"
     }
+    
     
     
     /*override func didReceiveMemoryWarning() {
@@ -85,14 +96,25 @@ class ClientViewController: UIViewController, UINavigationControllerDelegate { /
         // The parameter named row and component represents what was selected.
     }*/
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        super.prepare(for: segue, sender: sender)
+        guard let button = sender as? UIBarButtonItem, button === addButton else {
+            os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
+            return
+        }
+         let name = nameTextField.text ?? ""
+        let email = emailTextField.text ?? ""
+        let favouriteMovies = favouriteMoviesTextField.text ?? ""
+        
+       
+        client = Clients(name: name, email: email, favouritemoviesGenre: favouriteMovies, movies: movies)
+        
+        
     }
-    */
+    
 
 }

@@ -14,6 +14,8 @@
 		A31E790021B596DF00F0AE61 /* SearchMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31E78FF21B596DF00F0AE61 /* SearchMoviesViewController.swift */; };
 		A3AAD4BE21B1B6D30020FB60 /* ClientsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AAD4BD21B1B6D30020FB60 /* ClientsTableViewController.swift */; };
 		A3BDCFE921B71426008DB1BA /* Clients.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BDCFE821B71426008DB1BA /* Clients.swift */; };
+		A3CC359321B81798000F48B7 /* ClientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC359221B81798000F48B7 /* ClientTableViewCell.swift */; };
+		A3CC359521B8211A000F48B7 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC359421B8211A000F48B7 /* Movie.swift */; };
 		A3EF734521B1787000E1FA5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EF734421B1787000E1FA5F /* AppDelegate.swift */; };
 		A3EF734721B1787000E1FA5F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EF734621B1787000E1FA5F /* LoginViewController.swift */; };
 		A3EF734A21B1787000E1FA5F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3EF734821B1787000E1FA5F /* Main.storyboard */; };
@@ -41,6 +43,8 @@
 		A31E78FF21B596DF00F0AE61 /* SearchMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesViewController.swift; sourceTree = "<group>"; };
 		A3AAD4BD21B1B6D30020FB60 /* ClientsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsTableViewController.swift; sourceTree = "<group>"; };
 		A3BDCFE821B71426008DB1BA /* Clients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clients.swift; sourceTree = "<group>"; };
+		A3CC359221B81798000F48B7 /* ClientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTableViewCell.swift; sourceTree = "<group>"; };
+		A3CC359421B8211A000F48B7 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		A3EF734121B1787000E1FA5F /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3EF734421B1787000E1FA5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3EF734621B1787000E1FA5F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -111,12 +115,14 @@
 			isa = PBXGroup;
 			children = (
 				A3BDCFE821B71426008DB1BA /* Clients.swift */,
+				A3CC359421B8211A000F48B7 /* Movie.swift */,
 				A3EF734421B1787000E1FA5F /* AppDelegate.swift */,
 				A3EF734621B1787000E1FA5F /* LoginViewController.swift */,
 				A3EF734821B1787000E1FA5F /* Main.storyboard */,
 				A31E78FD21B57D3500F0AE61 /* MovieViewController.swift */,
 				A3AAD4BD21B1B6D30020FB60 /* ClientsTableViewController.swift */,
 				A31E78F921B55B5B00F0AE61 /* ClientViewController.swift */,
+				A3CC359221B81798000F48B7 /* ClientTableViewCell.swift */,
 				A31E78FF21B596DF00F0AE61 /* SearchMoviesViewController.swift */,
 				A3EF734B21B1787C00E1FA5F /* Assets.xcassets */,
 				A3EF734D21B1787C00E1FA5F /* LaunchScreen.storyboard */,
@@ -318,10 +324,12 @@
 			files = (
 				A3AAD4BE21B1B6D30020FB60 /* ClientsTableViewController.swift in Sources */,
 				A3BDCFE921B71426008DB1BA /* Clients.swift in Sources */,
+				A3CC359521B8211A000F48B7 /* Movie.swift in Sources */,
 				A3EF734721B1787000E1FA5F /* LoginViewController.swift in Sources */,
 				A3EF734521B1787000E1FA5F /* AppDelegate.swift in Sources */,
 				A31E78FA21B55B5C00F0AE61 /* ClientViewController.swift in Sources */,
 				A31E790021B596DF00F0AE61 /* SearchMoviesViewController.swift in Sources */,
+				A3CC359321B81798000F48B7 /* ClientTableViewCell.swift in Sources */,
 				A31E78FE21B57D3500F0AE61 /* MovieViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

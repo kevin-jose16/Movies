@@ -80,13 +80,34 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="30" id="3jo-OW-4cf">
-                                <rect key="frame" x="0.0" y="28" width="375" height="30"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="90" reuseIdentifier="cell" rowHeight="90" id="3jo-OW-4cf" customClass="ClientTableViewCell" customModule="Movies" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3jo-OW-4cf" id="8qK-V7-x7r">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="29.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cH-Tb-GdK">
+                                            <rect key="frame" x="16" y="11" width="343" height="27"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MsW-zZ-GF6">
+                                            <rect key="frame" x="16" y="53" width="343" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="email" destination="MsW-zZ-GF6" id="Nn2-g6-Jad"/>
+                                    <outlet property="name" destination="6cH-Tb-GdK" id="3uD-ca-sUi"/>
+                                    <segue destination="CBE-2K-4pO" kind="showDetail" identifier="ClientDetail" id="tnQ-2t-Lub"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -106,7 +127,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KI7-YX-WJe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1313" y="413"/>
+            <point key="canvasLocation" x="1312.8" y="412.44377811094455"/>
         </scene>
         <!--Client-->
         <scene sceneID="uWj-pa-VuL">
@@ -127,9 +148,6 @@
                                 <rect key="frame" x="152" y="318" width="71" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add Client"/>
-                                <connections>
-                                    <action selector="addClientButton:" destination="CBE-2K-4pO" eventType="touchUpInside" id="wwo-o1-8Zo"/>
-                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter the name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JbA-5F-Uzv">
                                 <rect key="frame" x="16" y="149" width="343" height="30"/>
@@ -166,6 +184,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Client" id="Apq-OK-rPd"/>
                     <connections>
+                        <outlet property="addButton" destination="OKQ-Fu-AYS" id="p3A-2T-OEO"/>
                         <outlet property="emailTextField" destination="8T3-EM-OMN" id="sg7-Qv-IM8"/>
                         <outlet property="favouriteMoviesTextField" destination="aKB-ow-MpC" id="BKV-Pq-XGk"/>
                         <outlet property="nameTextField" destination="JbA-5F-Uzv" id="al0-fN-GTz"/>
@@ -307,7 +326,7 @@
                                 <color key="backgroundColor" red="0.96903711557388306" green="0.95812267065048218" blue="0.88294512033462524" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="movieDetails:" destination="F90-bn-9O1" eventType="touchUpInside" id="Rg4-Rb-oh2"/>
-                                    <segue destination="VzL-16-a3S" kind="show" identifier="MovieDetails" id="FAF-Eg-y2x"/>
+                                    <segue destination="VzL-16-a3S" kind="showDetail" identifier="MovieDetails" id="FAF-Eg-y2x"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -390,4 +409,7 @@
             <point key="canvasLocation" x="1313" y="-248"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="tnQ-2t-Lub"/>
+    </inferredMetricsTieBreakers>
 </document>
