@@ -9,16 +9,35 @@
 import UIKit
 import os.log
 
-class ClientsTableViewController: UITableViewController, UINavigationControllerDelegate {
+class ClientsTableViewController: UITableViewController, UINavigationControllerDelegate{
+    
+    @IBAction func unwindToClientTableView(_ sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? ClientViewController, let client = sourceViewController.client {
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                // Update an existing client.
+                clientslist[selectedIndexPath.row] = client
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            }
+            else {
+                // Add a new meal.
+                let newIndexPath = IndexPath(row: clientslist.count, section: 0)
+                clientslist.append(client)
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+            // Save the clients.
+            saveClients()
+            
+        }
+    }
+    
     
     var clientslist = [Clients] ()
+    //public var refresh : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
-        tableView.dataSource = self
-        tableView.delegate = self
-        
+       
         // Load any saved meals, otherwise load sample data.
         if let savedClients = loadClients() {
             clientslist += savedClients
@@ -50,6 +69,8 @@ class ClientsTableViewController: UITableViewController, UINavigationControllerD
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let clientsViewController = storyBoard.instantiateViewController(withIdentifier: "Client") as! ClientViewController
         self.present(clientsViewController, animated:true, completion:nil)
+        clientsViewController.prepare(for: UIStoryboardSegue.init(identifier: "SaveClient", source: self, destination: clientsViewController), sender: navigationItem.rightBarButtonItem)
+        //self.shouldPerformSegue(withIdentifier: "SaveClient", sender: navigationItem.rightBarButtonItem)
     }
     
     @objc func leftbtn() { // remove @objc for Swift 3
@@ -61,7 +82,7 @@ class ClientsTableViewController: UITableViewController, UINavigationControllerD
         // Pass the selected object to the new view controller.
         super.prepare(for: segue, sender: sender)
         switch(segue.identifier ?? "") {
-        case "AddItem":
+        case "SaveClient":
             os_log("Adding a new client.", log: OSLog.default, type: .debug)
         case "ClientDetail":
             guard let clientsDetailViewController = segue.destination as? ClientViewController else {
@@ -111,18 +132,15 @@ class ClientsTableViewController: UITableViewController, UINavigationControllerD
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-        
-        let cellIdentifier = "ClientTableViewCell"
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ClientTableViewCell  else {
+        //let cellIdentifier = "ClientTableViewCell"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ClientTableViewCell  else {
             fatalError("The dequeued cell is not an instance of ClientTableViewCell.")
         }
-        // cell.textLabel?.text = cell[indexPath.row]
-        // Fetches the appropriate meal for the data source layout.
+      
         let client = clientslist[indexPath.row]
         
         cell.name.text = client.name
-        cell.email.text = client.email
+        //cell.email.text = client.email
         
         return cell
         
@@ -163,6 +181,23 @@ class ClientsTableViewController: UITableViewController, UINavigationControllerD
     private func loadClients() -> [Clients]? {
         return NSKeyedUnarchiver.unarchiveObject(withFile: Clients.ArchiveURL.path) as? [Clients]
     }
+    
+    /*override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if refresh == true {
+            tableView.reloadData()
+        }
+    }*/
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if let destination = segue.destination as? DetailsViewController {
+//            let cell = sender as! UITableViewCell
+//            let selectedRow = tableView.indexPath(for: cell)!.row
+//            destination.selectedValue = items[selectedRow]
+//        }
+//    }
+    
+    
 }
 
 
